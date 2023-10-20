@@ -4,11 +4,11 @@ import "fmt"
 
 func runEvalExample() {
 	fmt.Println("Eval example...")
-	a := leafsum{1, 2}
-	b := leaf{33}
-	c := leafsum{4, 5}
+	a := &leafsum{1, 2}
+	b := &leaf{33}
+	c := &leafsum{4, 5}
 
-	d := sum{b, c}
+	d := &sum{b, c}
 	e := makeFibTree(8)
 	ys := []expr{a, b, c, d, e}
 
@@ -19,9 +19,9 @@ func runEvalExample() {
 
 func makeFibTree(n int) expr {
 	if n <= 1 {
-		return leaf{n}
+		return &leaf{n}
 	} else {
-		return sum{makeFibTree(n - 1), makeFibTree(n - 2)}
+		return &sum{makeFibTree(n - 1), makeFibTree(n - 2)}
 	}
 }
 
@@ -43,14 +43,14 @@ type sum struct {
 	right expr
 }
 
-func (x leafsum) eval() int {
+func (x *leafsum) eval() int {
 	return x.left + x.right
 }
 
-func (x sum) eval() int {
+func (x *sum) eval() int {
 	return x.left.eval() + x.right.eval()
 }
 
-func (x leaf) eval() int {
+func (x *leaf) eval() int {
 	return x.value
 }
