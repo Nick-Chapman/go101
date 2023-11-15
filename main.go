@@ -1,6 +1,7 @@
 package main
 
 func main() {
-	hello()
-	runEvalExample()
+	//hello()
+	//runEvalExample()
+	runPrimes()
 }
