@@ -3,5 +3,6 @@ package main
 func main() {
 	//hello()
 	//runEvalExample()
-	runPrimes()
+	//runPrimes()
+	runSort()
 }
