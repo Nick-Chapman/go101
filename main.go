@@ -4,5 +4,6 @@ func main() {
 	//hello()
 	//runEvalExample()
 	//runPrimes()
-	runSort()
+	//runSort()
+	runSearch()
 }
