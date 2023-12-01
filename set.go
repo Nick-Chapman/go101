@@ -56,11 +56,11 @@ type set[T elem] interface {
 }
 
 func empty[T elem]() set[T] {
-	return &emptySet[T]{}
+	return emptySet[T]{}
 }
 
 func insert[T elem](x T, set set[T]) set[T] {
-	return &consSet[T]{x,set}
+	return consSet[T]{x,set}
 }
 
 func delete[T elem](x T, set set[T]) set[T] {
@@ -69,13 +69,13 @@ func delete[T elem](x T, set set[T]) set[T] {
 
 type emptySet[T elem] struct{}
 
-func (*emptySet[T]) null() bool {
+func (emptySet[T]) null() bool {
 	return true
 }
-func (*emptySet[T]) member(T) bool {
+func (emptySet[T]) member(T) bool {
 	return false
 }
-func (me *emptySet[T]) delete(T) set[T] {
+func (me emptySet[T]) delete(T) set[T] {
 	return me
 }
 
@@ -84,13 +84,13 @@ type consSet[T elem] struct{
 	xs set[T];
 }
 
-func (*consSet[T]) null() bool {
+func (consSet[T]) null() bool {
 	return false
 }
-func (me *consSet[T]) member(x T) bool {
+func (me consSet[T]) member(x T) bool {
 	return me.x == x || me.xs.member(x)
 }
-func (me *consSet[T]) delete(x T) set[T] {
+func (me consSet[T]) delete(x T) set[T] {
 	if me.x == x {
 		return me.xs
 	} else {
